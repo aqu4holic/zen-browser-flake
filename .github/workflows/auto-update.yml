@@ -1,0 +1,45 @@
+name: update-zen-browser
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 * * * *"
+
+jobs:
+  update-zen-browser:
+    name: Update Zen Browser
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check new version
+        id: new-version
+        run: |
+          ./new-version.sh
+
+      - name: Install Nix
+        if: steps.new-version.outputs.new_version == 'true'
+        uses: cachix/install-nix-action@v27
+        with:
+          nix_path: nixpkgs=channel:nixpkgs-unstable
+
+      - name: Setup Nix Magic Cache
+        if: steps.new-version.outputs.new_version == 'true'
+        uses: DeterminateSystems/magic-nix-cache-action@main
+
+      - name: Update hashes and test build
+        if: steps.new-version.outputs.new_version == 'true'
+        run: |
+          ./update-zen-browser.sh
+
+      - name: Create Pull Request
+        if: steps.new-version.outputs.new_version == 'true'
+        uses: peter-evans/create-pull-request@v5
+        with:
+          commit-message: "GitHub Action automated Zen update"
+          branch: "zen-update-$(date +'%Y%m%d%H%M%S')"
+          title: "Automated Zen Update"
+          body: "This pull request updates Zen Browser with the latest version."
+          labels: "automation, update"
+
