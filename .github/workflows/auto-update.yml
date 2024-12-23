@@ -38,7 +38,7 @@ jobs:
         uses: peter-evans/create-pull-request@v7
         with:
           commit-message: "GitHub Action automated Zen update"
-          branch: "zen-update-$(date +'%Y%m%d%H%M%S')"
+          branch: "zen-update"
           title: "Automated Zen Update"
           body: "This pull request updates Zen Browser with the latest version."
           labels: "automation, update"
