@@ -8,12 +8,10 @@
   outputs = { self, nixpkgs }:
     let
       system = "x86_64-linux";
-      version = "1.0.2-b.3";
+      version = "1.0.2-b.4";
       downloadUrl = {
-	specific.url = "https://github.com/zen-browser/desktop/releases/download/${version}/zen.linux-specific.tar.bz2";
-	specific.sha256 = "0gjrvsq83l6424ijii2w0c43f2nkf6n04hb2bc9wf1yyq7g3s2nc";
-	generic.url = "https://github.com/zen-browser/desktop/releases/download/${version}/zen.linux-generic.tar.bz2";
-	generic.sha256 = "1kv44fkql60rjgqcqsfdhbi4zr8bi91fkswlsk5d6mwj8nw1clmj";
+	generic.url = "https://github.com/zen-browser/desktop/releases/download/${version}/zen.linux-x86_64.tar.bz2";
+	generic.sha256 = "0vqzins5g4xx6niylzjq071vyk4djpn6a7rh1ymbx83ns0xb4lb5";
       };
 
       pkgs = import nixpkgs {
@@ -77,9 +75,10 @@
     in
     {
       packages."${system}" = {
-        generic = mkZen { variant = "generic"; };
-        specific = mkZen { variant = "specific"; };
-	default = self.packages."${system}".specific;
+        zen = mkZen { variant = "generic"; };
+        specific = self.packages."${system}".zen;
+        generic = self.packages."${system}".zen;
+	default = self.packages."${system}".zen;
       };
     };
 }
