@@ -6,7 +6,7 @@ Just add it to your NixOS `flake.nix` or home-manager:
 
 ```nix
 inputs = {
-  zen-browser.url = "github:MarceColl/zen-browser-flake";
+  zen-browser.url = "github:aqu4holic/zen-browser-flake";
   ...
 }
 ```
