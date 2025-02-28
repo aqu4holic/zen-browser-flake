@@ -10,8 +10,8 @@
       system = "x86_64-linux";
       version = "1.8.2b";
       downloadUrl = {
-	generic.url = "https://github.com/zen-browser/desktop/releases/download/${version}/zen.linux-x86_64.tar.bz2";
-	generic.sha256 = "0lqsspqnrp2v6ca6yacx7aq6afqr092q60aas1q6p7p15ky9ip7i";
+        generic.url = "https://github.com/zen-browser/desktop/releases/download/${version}/zen.linux-x86_64.tar.xz";
+        generic.sha256 = "0lqsspqnrp2v6ca6yacx7aq6afqr092q60aas1q6p7p15ky9ip7i";
       };
 
       pkgs = import nixpkgs {
