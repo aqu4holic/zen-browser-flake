@@ -10,7 +10,7 @@
       system = "x86_64-linux";
       version = "1.9.1b";
       downloadUrl = {
-	generic.url = "https://github.com/zen-browser/desktop/releases/download/${version}/zen.linux-x86_64.tar.bz2";
+	generic.url = "https://github.com/zen-browser/desktop/releases/download/${version}/zen.linux-x86_64.tar.xz";
 	generic.sha256 = "073lw306rffhr8nz8psdmdrc0vb2bmz6j02i5iabv0dyc190nk9z";
       };
 
